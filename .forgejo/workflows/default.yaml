@@ -13,7 +13,7 @@ jobs:
     #     apt install --no-install-recommends --no-upgrade -y just zip gnupg libassuan-dev libgpgme-dev        
 
     - name: Install Pkl
-      uses: https://github.com/pkl-community/setup-pkl@v0
+      uses: https://github.com/pkl-community/setup-pkl@v0.0.5
       with:
         pkl-version: "0.26.3"
 
