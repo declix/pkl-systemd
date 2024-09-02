@@ -13,7 +13,7 @@ jobs:
     #     apt install --no-install-recommends --no-upgrade -y just zip gnupg libassuan-dev libgpgme-dev        
 
     - name: Setup Pkl
-      uses: git://forge.aizatsky.com/declix/setup-pkl
+      uses: ssh://git@forge.aizatsky.com:10102/declix/setup-pkl.git
       with:
         pkl-version: "0.26.3"
 
