@@ -12,6 +12,11 @@ jobs:
     #   run: |
     #     apt install --no-install-recommends --no-upgrade -y just zip gnupg libassuan-dev libgpgme-dev        
 
+    - name: Setup Pkl
+      uses: declix/setup-pkl@v1
+      with:
+        pkl-version: "0.26.3"
+
     - name: Checkout
       uses: actions/checkout@v4
       with:
