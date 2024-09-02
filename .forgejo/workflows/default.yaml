@@ -12,8 +12,8 @@ jobs:
     #   run: |
     #     apt install --no-install-recommends --no-upgrade -y just zip gnupg libassuan-dev libgpgme-dev        
 
-    - name: Setup Pkl
-      uses: ssh://git@forge.aizatsky.com:10102/declix/setup-pkl.git@v1
+    - name: Install Pkl
+      uses: https://github.com/pkl-community/setup-pkl@v0
       with:
         pkl-version: "0.26.3"
 
