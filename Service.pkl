@@ -1,0 +1,89 @@
+module declix.systemd.Service;
+
+extends "./Unit.pkl";
+
+unit: UnitSection
+install: InstallSection
+service: ServiceSection
+
+// https://www.freedesktop.org/software/systemd/man/latest/systemd.service.html
+local class ServiceSection extends Section {
+    fixed name = "Service"
+
+    type: ServiceType?
+
+    busName: String?
+    environment: Mapping<String, String>
+    environmentFile: String?
+    execCondition: String?
+    execReload: String?
+    execStart: String?
+    execStartPost: String?
+    execStartPre: String?
+    execStop: String?
+    execStopPost: String?
+    exitType: ServiceExitType?
+    fileDescriptorStoreMax: String?
+    fileDescriptorStorePreserve: String?
+    guessMainPID: String?
+    nonBlocking: String?
+    notifyAccess: String?
+    oOMPolicy: String?
+    openFile: String?
+    pIDFile: String?
+    reloadSignal: String?
+    remainAfterExit: String?
+    restart: String?
+    restartForceExitStatus: String?
+    restartMaxDelaySec: String?
+    restartMode: String?
+    restartPreventExitStatus: String?
+    restartSec: String?
+    restartSteps: String?
+    rootDirectoryStartOnly: String?
+    runtimeMaxSec: String?
+    runtimeRandomizedExtraSec: String?
+    sockets: String?
+    successExitStatus: String?
+    timeoutAbortSec: UInt?
+    timeoutSec: UInt?
+    timeoutStartFailureMode: UInt?
+    timeoutStartSec: UInt?
+    timeoutStopFailureMode: UInt?
+    timeoutStopSec: UInt?
+    uSBFunctionDescriptors: String?
+    uSBFunctionStrings: String?
+    watchdogSec: String?
+
+    // todo: extract KillMode
+    finalKillSignal: String?
+    killMode: String?
+    killSignal: String?
+    restartKillSignal: String?
+    sendSIGHUP: String?
+    sendSIGKILL: String?
+    watchdogSignal: String?
+
+    function render(): String = "[\(name)]\n" + new Listing {
+        for (k, v in this.toMap()) {
+            when (k != "name" && k != "environment" && v != null) {
+                "\(k.capitalize())=\(v)"
+            }
+        }
+        for (k, v in environment) {
+            "Environment=\(k)=\(v)"
+        }
+        ""
+    }.join("\n")
+}
+
+local typealias ServiceType = "simple" | "exec" | "forking" | "oneshot" | "dbus" | "notify" | "notify-reload" | "idle"
+local typealias ServiceExitType = "main" | "cgroup"
+
+output {
+    text = new Listing {
+        unit.render()
+        install.render()
+        service.render()
+    }.join("\n")
+}

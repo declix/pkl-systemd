@@ -1,0 +1,73 @@
+abstract module declix.systemd.Unit;
+
+abstract class Section {
+    function render(): String = "[\(name)]\n" + new Listing {
+        for (k, v in this.toMap()) {
+            when (k != "name" && v != null) {
+                "\(k.capitalize())=\(v)"
+            }
+        }
+        ""
+    }.join("\n")
+}
+
+// https://www.freedesktop.org/software/systemd/man/latest/systemd.unit.html
+class UnitSection extends Section {
+    fixed name = "Unit"
+
+    after: String?
+    allowIsolate: String?
+    before: String?
+    bindsTo: String?
+    collectMode: String?
+    conflicts: String?
+    defaultDependencies: String?
+    description: String?
+    documentation: String?
+    failureAction: String?
+    failureActionExitStatus: String?
+    ignoreOnIsolate: String?
+    jobRunningTimeoutSec: String?
+    jobTimeoutAction: String?
+    jobTimeoutRebootArgument: String?
+    jobTimeoutSec: String?
+    joinsNamespaceOf: String?
+    onFailure: String?
+    onFailureJobMode: String?
+    onSuccess: String?
+    onSuccessJobMode: String?
+    partOf: String?
+    propagatesReloadTo: String?
+    propagatesStopTo: String?
+    rebootArgument: String?
+    refuseManualStart: String?
+    refuseManualStop: String?
+    reloadPropagatedFrom: String?
+    requires: String?
+    requiresMountsFor: String?
+    requisite: String?
+    sourcePath: String?
+    startLimitAction: String?
+    startLimitBurst: String?
+    startLimitIntervalSec: String?
+    stopPropagatedFrom: String?
+    stopWhenUnneeded: String?
+    successAction: String?
+    successActionExitStatus: String?
+    surviveFinalKillSignal: String?
+    upholds: String?
+    wants: String?
+    wantsMountsFor: String?
+}
+
+// https://www.freedesktop.org/software/systemd/man/latest/systemd.unit.html
+class InstallSection extends Section {
+    fixed name = "Install"
+
+    alias: String?
+    also: String?
+    defaultInstance: String?
+    requiredBy: String?
+    upheldBy: String?
+    wantedBy: String?
+}

@@ -1,0 +1,26 @@
+examples {
+  ["basic service"] {
+    """
+    [Unit]
+    After=network-online.target
+    Description=testService
+    RequiresMountsFor=/run/containers/storage
+    Wants=network-online.target
+    
+    [Install]
+    WantedBy=default.target
+    
+    [Service]
+    Type=forking
+    ExecReload=podman restart testService
+    ExecStartPre=/usr/bin/rm -f %t/%n.pid %t/%n.cid
+    ExecStop=/usr/bin/sh -c "podman rm -f `cat %t/%n.cid`"
+    PIDFile=%t/%n.pid
+    Restart=always
+    TimeoutStopSec=70
+    KillMode=control-group
+    Environment=PODMAN_SYSTEMD_UNIT=%n
+    
+    """
+  }
+}

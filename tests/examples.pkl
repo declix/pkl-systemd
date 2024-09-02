@@ -1,0 +1,7 @@
+amends "pkl:test"
+
+examples {
+    ["basic service"] {
+        import("../examples/service.pkl").output.text
+    }
+}

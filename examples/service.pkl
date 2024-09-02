@@ -1,0 +1,28 @@
+amends "../Service.pkl"
+
+local serviceName = "testService"
+
+unit = new {
+    description = serviceName
+    wants = "network-online.target"
+    after = "network-online.target"
+    requiresMountsFor = "/run/containers/storage"
+}
+
+service = new {
+    environment = new {
+        ["PODMAN_SYSTEMD_UNIT"] = "%n"
+    }
+    restart = "always"
+    timeoutStopSec = 70
+    execStartPre = "/usr/bin/rm -f %t/%n.pid %t/%n.cid"
+    execStop="/usr/bin/sh -c \"podman rm -f `cat %t/%n.cid`\""
+    execReload="podman restart \(serviceName)"
+    type = "forking"
+    killMode = "control-group"
+    pIDFile = "%t/%n.pid"
+}
+
+install = new {
+    wantedBy = "default.target"
+}
