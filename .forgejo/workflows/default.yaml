@@ -1,0 +1,23 @@
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+    - name: Install system dependecies
+      run: |
+        apt update
+        apt install --no-install-recommends --no-upgrade -y git nodejs curl ca-certificates        
+
+    # - name: Install dependecies
+    #   run: |
+    #     apt install --no-install-recommends --no-upgrade -y just zip gnupg libassuan-dev libgpgme-dev        
+
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    # - name: Set up Go
+    #   uses: actions/setup-go@v5
+    #   with:
+    #     go-version: '1.22'
