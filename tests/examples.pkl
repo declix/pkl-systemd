@@ -1,7 +1,10 @@
 amends "pkl:test"
 
 examples {
-    ["basic service"] {
+    ["examples/service"] {
         import("../examples/service.pkl").output.text
+    }
+    ["examples/timer"] {
+        import("../examples/timer.pkl").output.text
     }
 }

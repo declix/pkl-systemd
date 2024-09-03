@@ -1,5 +1,5 @@
 examples {
-  ["basic service"] {
+  ["examples/service"] {
     """
     [Unit]
     After=network-online.target
@@ -20,6 +20,19 @@ examples {
     TimeoutStopSec=70
     KillMode=control-group
     Environment=PODMAN_SYSTEMD_UNIT=%n
+    
+    """
+  }
+  ["examples/timer"] {
+    """
+    [Unit]
+    Description=cleanup podman resources
+    
+    [Install]
+    WantedBy=multi-user.target
+    
+    [Timer]
+    OnUnitInactiveSec=3600
     
     """
   }

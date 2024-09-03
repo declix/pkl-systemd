@@ -1,0 +1,36 @@
+module declix.systemd.Timer;
+
+extends "./Unit.pkl";
+
+unit: UnitSection
+install: InstallSection
+timer: TimerSection
+
+// https://www.freedesktop.org/software/systemd/man/latest/systemd.timer.html
+class TimerSection extends Section {
+    fixed name = "Timer"
+
+    accuracySec: (String|Number)?
+    fixedRandomDelay: String?
+    onActiveSec: (String|Number)?
+    onBootSec: (String|Number)?
+    onCalendar: String?
+    onClockChange: String?
+    onStartupSec: (String|Number)?
+    onTimezoneChange: String?
+    onUnitActiveSec: (String|Number)?
+    onUnitInactiveSec: (String|Number)?
+    persistent: String?
+    randomizedDelaySec: (String|Number)?
+    remainAfterElapse: String?
+    unit: String?
+    wakeSystem: String?
+}
+
+output {
+    text = new Listing {
+        unit.render()
+        install.render()
+        timer.render()
+    }.join("\n")
+}

@@ -1,0 +1,11 @@
+amends "../Timer.pkl"
+
+unit = new {
+    description = "cleanup podman resources"
+}
+timer = new {
+    onUnitInactiveSec = 60 * 60
+}
+install = new {
+    wantedBy = "multi-user.target"
+}
