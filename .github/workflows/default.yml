@@ -1,0 +1,27 @@
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+    - name: Install system dependecies
+      run: |
+        apt update
+        apt install --no-install-recommends --no-upgrade -y git nodejs curl ca-certificates        
+
+    # - name: Install dependecies
+    #   run: |
+    #     apt install --no-install-recommends --no-upgrade -y just zip gnupg libassuan-dev libgpgme-dev        
+
+    - name: Install Pkl
+      uses: https://github.com/pkl-community/setup-pkl@v0.0.5
+      with:
+        pkl-version: "0.26.3"
+
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Run tests
+      run: |
+        pkl test tests/examples.pkl
