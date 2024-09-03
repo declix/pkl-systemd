@@ -24,4 +24,4 @@ jobs:
 
     - name: Run tests
       run: |
-        pkl test tests/examples.pkl
+        pkl test

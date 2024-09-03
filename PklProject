@@ -1,0 +1,14 @@
+amends "pkl:Project"
+
+package {
+    name = "pkl-systemd"
+    version = "0.0.1"
+    baseUri = "package://pkg.declix.org/pkl-systemd"
+    license = "Apache-2.0"
+    authors {
+        "Mike Aizatsky <mike.aizatsky@gmail.com>"
+    }
+    packageZipUrl = "https://github.com/declix/\(name)/releases/download/\(name)@\(version)/\(name)@\(version).zip"
+}
+
+tests = import*("tests/**.pkl").keys.toListing()
