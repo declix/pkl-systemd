@@ -1,0 +1,31 @@
+module declix.systemd.Mount;
+
+extends "./Unit.pkl";
+
+unit: UnitSection
+install: InstallSection
+mount: MountSection
+
+// https://www.freedesktop.org/software/systemd/man/latest/systemd.mount.html
+class MountSection extends Section {
+    fixed name = "Mount"
+
+    what: String
+    where: String
+    type: String?
+    options: String?
+    sloppyOptions: Boolean?
+    lazyUnmount: Boolean?
+    readWriteOnly: Boolean?
+    forceUnmount: Boolean?
+    directoryMode: String?
+    timeoutSec: UInt?    
+}
+
+output {
+    text = new Listing {
+        unit.render()
+        install.render()
+        mount.render()
+    }.join("\n")
+}

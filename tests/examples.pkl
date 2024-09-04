@@ -7,4 +7,7 @@ examples {
     ["examples/timer"] {
         import("../examples/timer.pkl").output.text
     }
+    ["examples/mount"] {
+        import("../examples/mount.pkl").output.text
+    }
 }

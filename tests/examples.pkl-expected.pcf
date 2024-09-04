@@ -36,4 +36,19 @@ examples {
     
     """
   }
+  ["examples/mount"] {
+    """
+    [Unit]
+    Description=test mount
+    
+    [Install]
+    WantedBy=multi-user.target
+    
+    [Mount]
+    What=/foo
+    Where=/bar
+    TimeoutSec=3600
+    
+    """
+  }
 }

@@ -1,0 +1,13 @@
+amends "../Mount.pkl"
+
+unit = new {
+    description = "test mount"
+}
+mount = new {
+    what = "/foo"
+    where = "/bar"
+    timeoutSec = 60 * 60
+}
+install = new {
+    wantedBy = "multi-user.target"
+}
