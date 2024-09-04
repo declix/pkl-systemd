@@ -8,6 +8,11 @@ on:
 jobs:
   test:
     runs-on: ubuntu-24.04
+
+    permissions:
+        # todo: isolate release workflow, only it needs this permission
+        contents: write
+
     steps:
     - name: Install Pkl
       uses: pkl-community/setup-pkl@v0.0.5
