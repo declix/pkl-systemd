@@ -34,14 +34,14 @@ jobs:
 
     - name: Package project
       run: |
-        pkl project package
+        pkl project package --output out
 
     - name: Upload Artifacts
       # todo: use v4 when it supports GHES
       uses: actions/upload-artifact@v3
       with:
         name: artifacts.zip
-        path: .out
+        path: out/
 
     - name: Release
       uses: https://github.com/softprops/action-gh-release@v2
