@@ -2,7 +2,7 @@ amends "pkl:Project"
 
 package {
     name = "pkl-systemd"
-    version = "0.0.2"
+    version = "0.0.3"
     baseUri = "package://pkl.declix.org/pkl-systemd"
     license = "MIT"
     authors {
