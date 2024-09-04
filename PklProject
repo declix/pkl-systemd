@@ -2,9 +2,9 @@ amends "pkl:Project"
 
 package {
     name = "pkl-systemd"
-    version = "0.0.1"
+    version = "0.0.2"
     baseUri = "package://pkl.declix.org/pkl-systemd"
-    license = "Apache-2.0"
+    license = "MIT"
     authors {
         "Mike Aizatsky <mike.aizatsky@gmail.com>"
     }
