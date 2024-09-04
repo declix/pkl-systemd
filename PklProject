@@ -2,13 +2,13 @@ amends "pkl:Project"
 
 package {
     name = "pkl-systemd"
-    version = "0.0.5"
+    version = "0.0.6"
     baseUri = "package://pkl.declix.org/pkl-systemd"
     license = "MIT"
     authors {
         "Mike Aizatsky <mike.aizatsky@gmail.com>"
     }
-    packageZipUrl = "https://github.com/declix/\(name)/releases/download/\(name)@\(version)/\(name)@\(version).zip"
+    packageZipUrl = "https://github.com/declix/\(name)/releases/download/\(version)/\(name)@\(version).zip"
 }
 
 tests = import*("tests/**.pkl").keys.toListing()
