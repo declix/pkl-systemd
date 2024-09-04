@@ -37,7 +37,8 @@ jobs:
         pkl project package
 
     - name: Upload Artifacts
-      uses: actions/upload-artifact@v4
+      # todo: use v4 when it supports GHES
+      uses: actions/upload-artifact@v3
       with:
         name: artifacts.zip
         path: .out/**
