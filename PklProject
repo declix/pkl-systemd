@@ -3,7 +3,7 @@ amends "pkl:Project"
 package {
     name = "pkl-systemd"
     version = "0.0.1"
-    baseUri = "package://pkg.declix.org/pkl-systemd"
+    baseUri = "package://pkl.declix.org/pkl-systemd"
     license = "Apache-2.0"
     authors {
         "Mike Aizatsky <mike.aizatsky@gmail.com>"

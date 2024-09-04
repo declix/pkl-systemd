@@ -25,3 +25,7 @@ jobs:
     - name: Run tests
       run: |
         pkl test
+
+    - name: Package project
+      run: |
+        pkl project package
