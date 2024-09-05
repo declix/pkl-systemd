@@ -10,4 +10,7 @@ examples {
     ["examples/mount"] {
         import("../examples/mount.pkl").output.text
     }
+    ["examples/socket"] {
+        import("../examples/socket.pkl").output.text
+    }
 }

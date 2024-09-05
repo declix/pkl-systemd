@@ -1,0 +1,9 @@
+amends "../Socket.pkl"
+
+unit = new {
+    description = "test socket"
+}
+
+socket = new {
+    listenDatagram = "/var/run/foo.socket"
+}

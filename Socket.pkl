@@ -1,0 +1,84 @@
+module declix.systemd.Socket;
+
+extends "./Unit.pkl";
+
+unit: UnitSection
+install: InstallSection
+socket: SocketSection
+
+// https://www.freedesktop.org/software/systemd/man/latest/systemd.socket.html
+class SocketSection extends Section {
+    fixed name = "Socket"
+
+    listenStream: String?
+    listenDatagram: String?
+    listenSequentialPacket: String?
+    listenFIFO: String?
+    listenSpecial: String?
+    listenNetlink: String?
+    listenMessageQueue: String?
+    listenUSBFunction: String?
+    socketProtocol: String?
+    bindIPv6Only: String?
+    backlog: UInt?
+    bindToDevice: String?
+    socketUser: String?
+    socketGroup: String?
+    socketMode: String?
+    directoryMode: String?
+    accept: Boolean?
+    writable: Boolean?
+    flushPending: Boolean?
+    maxConnections: UInt?
+    maxConnectionsPerSource: UInt?
+    keepAlive: Boolean?
+    keepAliveTimeSec: UInt?
+    keepAliveIntervalSec: UInt?
+    keepAliveProbes: UInt?
+    noDelay: Boolean?
+    priority: UInt?
+    deferAcceptSec: UInt?
+    receiveBuffer: UInt?
+    sendBuffer: UInt?
+    iPTOS: UInt?
+    iPTTL: UInt?
+    mark: UInt?
+    reusePort: Boolean?
+    smackLabel: String?
+    smackLabelIPIn: String?
+    smackLabelIPOut: String?
+    sELinuxContextFromNet: Boolean?
+    pipeSize: UInt?
+    messageQueueMaxMessages: UInt?
+    messageQueueMessageSize: UInt?
+    freeBind: Boolean?
+    transparent: Boolean?
+    broadcast: Boolean?
+    passCredentials: Boolean?
+    passSecurity: Boolean?
+    passPacketInfo: Boolean?
+    timestamping: String?
+    tCPCongestion: String?
+    execStartPre: String?
+    execStartPost: String?
+    execStopPre: String?
+    execStopPost: String?
+    timeoutSec: UInt?
+    service: String?
+    removeOnStop: Boolean?
+    symlinks: String?
+    fileDescriptorName: String?
+    triggerLimitIntervalSec: UInt?
+    triggerLimitBurst: UInt?
+    pollLimitIntervalSec: UInt?
+    pollLimitBurst: UInt?
+    passFileDescriptorsToExec: Boolean?
+}
+
+output {
+    text = new Listing {
+        unit.render()
+        install.render()
+        socket.render()
+    }.join("\n")
+}

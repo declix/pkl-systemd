@@ -37,3 +37,16 @@ WantedBy=default.target
 [Service]
 ExecStart=bash -c 'echo hello'
 ```
+
+## TODO
+
+- [ ] device
+- [ ] automount
+- [ ] swap
+- [ ] target
+- [ ] path
+- [ ] slice
+- [ ] scope
+- [ ] pkldoc
+- [ ] durations
+- [ ] byte sizes

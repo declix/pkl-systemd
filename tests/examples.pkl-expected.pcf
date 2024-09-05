@@ -51,4 +51,16 @@ examples {
     
     """
   }
+  ["examples/socket"] {
+    """
+    [Unit]
+    Description=test socket
+    
+    [Install]
+    
+    [Socket]
+    ListenDatagram=/var/run/foo.socket
+    
+    """
+  }
 }
