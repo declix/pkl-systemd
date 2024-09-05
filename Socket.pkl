@@ -8,8 +8,6 @@ socket: SocketSection
 
 // https://www.freedesktop.org/software/systemd/man/latest/systemd.socket.html
 class SocketSection extends Section {
-    fixed name = "Socket"
-
     listenStream: String?
     listenDatagram: String?
     listenSequentialPacket: String?
@@ -73,12 +71,4 @@ class SocketSection extends Section {
     pollLimitIntervalSec: UInt?
     pollLimitBurst: UInt?
     passFileDescriptorsToExec: Boolean?
-}
-
-output {
-    text = new Listing {
-        unit.render()
-        install.render()
-        socket.render()
-    }.join("\n")
 }

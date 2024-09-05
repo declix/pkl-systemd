@@ -1,9 +1,9 @@
 abstract module declix.systemd.Unit;
 
 abstract class Section {
-    function render(): String = "[\(name)]\n" + new Listing {
+    function render(): String = new Listing {
         for (k, v in this.toMap()) {
-            when (k != "name" && v != null) {
+            when (v != null) {
                 "\(k.capitalize())=\(v)"
             }
         }
@@ -13,8 +13,6 @@ abstract class Section {
 
 // https://www.freedesktop.org/software/systemd/man/latest/systemd.unit.html
 class UnitSection extends Section {
-    fixed name = "Unit"
-
     after: String?
     allowIsolate: String?
     before: String?
@@ -62,12 +60,27 @@ class UnitSection extends Section {
 
 // https://www.freedesktop.org/software/systemd/man/latest/systemd.unit.html
 class InstallSection extends Section {
-    fixed name = "Install"
-
     alias: String?
     also: String?
     defaultInstance: String?
     requiredBy: String?
     upheldBy: String?
     wantedBy: String?
+}
+
+class UnitFileRenderer extends ValueRenderer {
+    function renderDocument(value: Any): String = renderSections(value.toMap())
+
+    function renderSections(map: Map): String = new Listing {
+        for (name in map.keys) {
+            renderSection(name, map[name])
+        }
+    }.join("\n")
+
+    function renderSection(name: String, section: Section): String = 
+        "[\(name.capitalize())]\n" + section.render()
+}
+
+output {
+    renderer = new UnitFileRenderer { }
 }

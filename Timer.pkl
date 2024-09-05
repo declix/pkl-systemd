@@ -8,8 +8,6 @@ timer: TimerSection
 
 // https://www.freedesktop.org/software/systemd/man/latest/systemd.timer.html
 class TimerSection extends Section {
-    fixed name = "Timer"
-
     accuracySec: (String|Number)?
     fixedRandomDelay: String?
     onActiveSec: (String|Number)?
@@ -25,12 +23,4 @@ class TimerSection extends Section {
     remainAfterElapse: String?
     unit: String?
     wakeSystem: String?
-}
-
-output {
-    text = new Listing {
-        unit.render()
-        install.render()
-        timer.render()
-    }.join("\n")
 }

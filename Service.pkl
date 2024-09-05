@@ -8,8 +8,6 @@ service: ServiceSection
 
 // https://www.freedesktop.org/software/systemd/man/latest/systemd.service.html
 local class ServiceSection extends Section {
-    fixed name = "Service"
-
     type: ServiceType?
 
     busName: String?
@@ -64,9 +62,9 @@ local class ServiceSection extends Section {
     sendSIGKILL: String?
     watchdogSignal: String?
 
-    function render(): String = "[\(name)]\n" + new Listing {
+    function render(): String = new Listing {
         for (k, v in this.toMap()) {
-            when (k != "name" && k != "environment" && v != null) {
+            when (k != "environment" && v != null) {
                 "\(k.capitalize())=\(v)"
             }
         }
@@ -79,11 +77,3 @@ local class ServiceSection extends Section {
 
 local typealias ServiceType = "simple" | "exec" | "forking" | "oneshot" | "dbus" | "notify" | "notify-reload" | "idle"
 local typealias ServiceExitType = "main" | "cgroup"
-
-output {
-    text = new Listing {
-        unit.render()
-        install.render()
-        service.render()
-    }.join("\n")
-}

@@ -8,8 +8,6 @@ mount: MountSection
 
 // https://www.freedesktop.org/software/systemd/man/latest/systemd.mount.html
 class MountSection extends Section {
-    fixed name = "Mount"
-
     what: String
     where: String
     type: String?
@@ -20,12 +18,4 @@ class MountSection extends Section {
     forceUnmount: Boolean?
     directoryMode: String?
     timeoutSec: UInt?    
-}
-
-output {
-    text = new Listing {
-        unit.render()
-        install.render()
-        mount.render()
-    }.join("\n")
 }
