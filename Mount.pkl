@@ -7,7 +7,7 @@ install: InstallSection
 mount: MountSection
 
 // https://www.freedesktop.org/software/systemd/man/latest/systemd.mount.html
-class MountSection extends Section {
+class MountSection {
     what: String
     where: String
     type: String?

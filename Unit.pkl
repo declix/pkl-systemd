@@ -1,18 +1,7 @@
 abstract module declix.systemd.Unit;
 
-abstract class Section {
-    function render(): String = new Listing {
-        for (k, v in this.toMap()) {
-            when (v != null) {
-                "\(k.capitalize())=\(v)"
-            }
-        }
-        ""
-    }.join("\n")
-}
-
 // https://www.freedesktop.org/software/systemd/man/latest/systemd.unit.html
-class UnitSection extends Section {
+class UnitSection {
     after: String?
     allowIsolate: String?
     before: String?
@@ -59,7 +48,7 @@ class UnitSection extends Section {
 }
 
 // https://www.freedesktop.org/software/systemd/man/latest/systemd.unit.html
-class InstallSection extends Section {
+class InstallSection {
     alias: String?
     also: String?
     defaultInstance: String?
@@ -68,7 +57,7 @@ class InstallSection extends Section {
     wantedBy: String?
 }
 
-class UnitFileRenderer extends ValueRenderer {
+local class UnitFileRenderer extends ValueRenderer {
     function renderDocument(value: Any): String = renderSections(value.toMap())
 
     function renderSections(map: Map): String = new Listing {
@@ -77,8 +66,28 @@ class UnitFileRenderer extends ValueRenderer {
         }
     }.join("\n")
 
-    function renderSection(name: String, section: Section): String = 
-        "[\(name.capitalize())]\n" + section.render()
+    function renderSection(name: String, section: Any): String = 
+        "[\(name.capitalize())]\n" + new Listing {
+            for (name in section.toMap().keys) {
+                when (section.toMap()[name] != null) {
+                    renderProperty(name, section.toMap()[name])
+                }
+            }
+            ""
+    }.join("\n")
+
+    function renderProperty(name: String, value: Any): String = 
+        if (value is Mapping) new Listing {
+            for (key in value.toMap().keys) {
+                "\(name.capitalize())=\(key)=" + renderValue(value.toMap()[key])
+            }
+        }.join("\n")
+        else "\(name.capitalize())=" + renderValue(value)
+
+    function renderValue(value: Any): String =
+        if (value is String) value
+        else if (value is Number) "\(value)"
+        else throw("unexpected value \(value.getClass())")
 }
 
 output {

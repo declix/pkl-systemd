@@ -12,6 +12,7 @@ examples {
     
     [Service]
     Type=forking
+    Environment=PODMAN_SYSTEMD_UNIT=%n
     ExecReload=podman restart testService
     ExecStartPre=/usr/bin/rm -f %t/%n.pid %t/%n.cid
     ExecStop=/usr/bin/sh -c "podman rm -f `cat %t/%n.cid`"
@@ -19,7 +20,6 @@ examples {
     Restart=always
     TimeoutStopSec=70
     KillMode=control-group
-    Environment=PODMAN_SYSTEMD_UNIT=%n
     
     """
   }

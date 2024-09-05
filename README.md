@@ -7,7 +7,7 @@ Pkl templates for configuring [Systemd](https://systemd.io/).
 Create `hello.pkl`:
 
 ```pkl
-amends "package://pkl.declix.org/pkl-systemd@0.0.6#/Service.pkl"
+amends "package://pkl.declix.org/pkl-systemd@0.0.8#/Service.pkl"
 
 service = new {
     execStart = "bash -c 'echo hello'"

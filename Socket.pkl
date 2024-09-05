@@ -7,7 +7,7 @@ install: InstallSection
 socket: SocketSection
 
 // https://www.freedesktop.org/software/systemd/man/latest/systemd.socket.html
-class SocketSection extends Section {
+class SocketSection {
     listenStream: String?
     listenDatagram: String?
     listenSequentialPacket: String?

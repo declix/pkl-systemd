@@ -7,7 +7,7 @@ install: InstallSection
 service: ServiceSection
 
 // https://www.freedesktop.org/software/systemd/man/latest/systemd.service.html
-local class ServiceSection extends Section {
+local class ServiceSection {
     type: ServiceType?
 
     busName: String?

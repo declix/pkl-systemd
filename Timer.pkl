@@ -7,7 +7,7 @@ install: InstallSection
 timer: TimerSection
 
 // https://www.freedesktop.org/software/systemd/man/latest/systemd.timer.html
-class TimerSection extends Section {
+class TimerSection {
     accuracySec: (String|Number)?
     fixedRandomDelay: String?
     onActiveSec: (String|Number)?
